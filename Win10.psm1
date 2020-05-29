@@ -3213,6 +3213,23 @@ Function EnableXboxFeatures {
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\GameDVR" -Name "AllowGameDVR" -ErrorAction SilentlyContinue
 }
 
+# Disable Xbox Game DVR - Not applicable to Server
+Function DisableXboxDVR {
+	Write-Output "Disabling Xbox DVR..."
+	Set-ItemProperty -Path "HKCU:\System\GameConfigStore" -Name "GameDVR_Enabled" -Type DWord -Value 0
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\GameDVR")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\GameDVR" | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\GameDVR" -Name "AllowGameDVR" -Type DWord -Value 0
+}
+
+# Enable Xbox Game DVR - Not applicable to Server
+Function EnableXboxDVR {
+	Write-Output "Enabling Xbox DVR..."
+	Set-ItemProperty -Path "HKCU:\System\GameConfigStore" -Name "GameDVR_Enabled" -Type DWord -Value 1
+	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\GameDVR" -Name "AllowGameDVR" -ErrorAction SilentlyContinue
+}
+
 # Disable Fullscreen optimizations
 Function DisableFullscreenOptims {
 	Write-Output "Disabling Fullscreen optimizations..."
