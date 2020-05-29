@@ -192,7 +192,8 @@ DisableThumbsDBOnNetwork        # EnableThumbsDBOnNetwork
 ### Application Tweaks ###
 DisableOneDrive                 # EnableOneDrive
 UninstallOneDrive               # InstallOneDrive
-UninstallMsftBloat              # InstallMsftBloat
+# UninstallMsftBloat            # InstallMsftBloat
+UninstallCustomMsftBloat        # InstallCustomMsftBloat
 UninstallThirdPartyBloat        # InstallThirdPartyBloat
 # UninstallWindowsStore         # InstallWindowsStore
 # DisableXboxFeatures           # EnableXboxFeatures
